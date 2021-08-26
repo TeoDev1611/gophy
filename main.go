@@ -28,7 +28,14 @@ func main() {
 		Fn:          cmds.ListFiles,
 	}
 
-	cli.AddCmds(versionCmd, lsCmd)
+	touchCmd := &icli.BasicCommand{
+		Name:        "touch",
+		Description: "Create a simple file",
+		Usage:       "touch <filename>",
+		Fn:          cmds.TouchFile,
+	}
+
+	cli.AddCmds(versionCmd, lsCmd, touchCmd)
 
 	cli.Run()
 }

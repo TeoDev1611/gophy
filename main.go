@@ -8,6 +8,7 @@ import (
 	"github.com/tbuchaillot/icli"
 )
 
+// main function    you know what make this :p
 func main() {
 	cli := icli.NewCLI()
 	cli.SetErrorColor(icli.PURPLE)
@@ -35,11 +36,19 @@ func main() {
 		Fn:          cmds.TouchFile,
 	}
 
-	cli.AddCmds(versionCmd, lsCmd, touchCmd)
+	rmCmd := &icli.BasicCommand{
+		Name:        "rm",
+		Description: "Delete a file",
+		Usage:       "rm <filename>",
+		Fn:          cmds.RemoveFile,
+	}
+
+	cli.AddCmds(versionCmd, lsCmd, touchCmd, rmCmd)
 
 	cli.Run()
 }
 
+// Version function    print the version of gophy
 func Version(args ...string) error {
 	if len(args) <= 0 {
 		fmt.Println("Version 0.1.0")

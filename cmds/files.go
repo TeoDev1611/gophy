@@ -21,6 +21,7 @@ func contains(s []string, str string) bool {
 	return false
 }
 
+// ListFiles function    list the files in the current dir
 func ListFiles(args ...string) error {
 	if len(args) <= 1 {
 		wd, _ := os.Getwd()
@@ -41,6 +42,7 @@ func ListFiles(args ...string) error {
 	}
 }
 
+// TouchFile function    write a new file
 func TouchFile(args ...string) error {
 	if len(args) <= 1 {
 		_, err := os.Stat(args[0])
@@ -56,6 +58,18 @@ func TouchFile(args ...string) error {
 			if err != nil {
 				fmt.Println(err)
 			}
+		}
+		return nil
+	} else {
+		return errors.New("Error not argument needed")
+	}
+}
+
+func RemoveFile(args ...string) error {
+	if len(args) <= 1 {
+		err := os.Remove(args[0])
+		if err != nil {
+			return err
 		}
 		return nil
 	} else {
